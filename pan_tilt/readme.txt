@@ -1,0 +1,1 @@
+If using the interaction engine, you can copy the folder enclosing this file to sketchbook to download the code to your Arduino via terminal. 

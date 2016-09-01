@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8"/>
+	<title>Ella's Dashboard</title>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="jquery.min.js"></script>
+	<script src="client.js"></script> 
+	<script src = "/tracking-min.js"></script>
+	<script src = "/face-min.js"></script>
+	<script src = "/watsonrecognition.bundle.js"></script>
+
+	<style>
+	  .rect {
+		border: 2px solid #a64ceb;
+		left: -1000px;
+		position: absolute;
+		top: -1000px;
+	  }
+
+	  /*#img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -173px 0 0 -300px;
+	  }*/
+
+	  .img-container {
+		  width: 100%;
+		  height: 530px;
+		  position: relative;
+		  background: #eee;
+		  overflow: hidden;
+		  border-bottom-right-radius: 10px;
+		  border-bottom-left-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Ella's Dashboard</h1>
+
+	<h2>Gaze Control</h2>
+	<p><i>use the < ^ > keys on your keyboard to move Ella's head</i></p>
+
+	<h2>Select Language</h2>
+	<p>Language 1
+	<select id="fromlanguage">
+	  <!-- <option value="l1_en">English</option> -->
+	  <option value="es">Spanish</option>
+	  <option value="en">English</option>
+	</select>
+	Language 2
+	<select id='tolanguage'>
+	  <option value="en">English</option>
+	  <option value="es">Spanish</option>
+	</select>
+	</p>
+
+
+	<h2>Say</h2>
+	<input id='txt-in' type="text">
+	<button id='play-txt'>Play</button>
+
+	<h2>Say Something</h2>
+	<button onclick="play(0)">Success</button>
+	<button onclick="play(1)">Failure</button>
+	<button onclick="play(2)">Whine</button>
+
+	<h2>Video</h2>
+	<div id="container">
+		<img id="img">
+	</div>
+
+	<!-- <canvas id="videoCanvas" width="320" height="240">
+		<p>
+			Please use a browser that supports the Canvas Element, like
+			<a href="http://www.google.com/chrome">Chrome</a>,
+			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
+			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+		</p>
+	</canvas> -->
+	<canvas id="canvas" width="320" height="240"></canvas>
+
+	<script type="text/javascript" src="jsmpg.js"></script>
+	<script>
+		// // var ws = new WebSocket('wss://andrea-pi:443');
+		// // ws.onopen = function(){
+		// // 	console.log('WebSocket open');
+		// // }
+
+		// // ws.onmessage = function(e){
+		// // 	$('#img').attr('src', 'data:image/jpg;base64,' + e.data);
+		// // }
+		// var canvas = document.getElementById('videoCanvas');
+		// var ctx = canvas.getContext('2d');
+		// ctx.fillStyle = '#444';
+		// ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
+
+		// // Setup the WebSocket connection and start the player
+		// var client = new WebSocket('ws://andrea-pi:8084/');
+		// var player = new jsmpeg(client, {canvas:canvas});
+
+
+
+
+		// window.onload = function() {
+		// 	var video = document.getElementById('videoCanvas');
+		// 	var canvas = document.getElementById('canvas');
+  //     		var context = canvas.getContext('2d');
+
+		// 	var tracker = new tracking.ObjectTracker(["face"]);
+		// 	tracker.setInitialScale(4);
+		// 	tracker.setStepSize(2);
+		// 	tracker.setEdgesDensity(0.1);
+
+		// 	// tracking.track('#videoCanvas', tracker, { camera: true });
+
+		//  //      tracker.on('track', function(event) {
+		//  //        context.clearRect(0, 0, canvas.width, canvas.height);
+
+		//  //        event.data.forEach(function(rect) {
+		//  //          context.strokeStyle = '#a64ceb';
+		//  //          context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+		//  //          context.font = '11px Helvetica';
+		//  //          context.fillStyle = "#fff";
+		//  //          context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+		//  //          context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+		//  //        });
+		//  //      });
+
+		//  	var rect = document.createElement('div');
+		//  	document.getElementById('container').appendChild(rect);
+
+		// 	setInterval(function(){
+		// 		// $('.facerect').each(function(){
+		// 		// 	$(this).remove();
+		// 		// });
+
+		// 		tracking.track('#videoCanvas', tracker, { camera: true });
+
+		// 	}, 1000);
+
+		// 	tracker.on('track', function(event) {
+		// 		event.data.forEach(function(rect) {
+		// 			window.plot(rect.x, rect.y, rect.width, rect.height);
+		// 		});
+		// 	});
+
+		// 	window.plot = function(x, y, w, h) {
+		// 		// rect.class = 'facerect';
+		// 		rect.classList.add('rect');
+		// 		rect.style.width = w + 'px';
+		// 		rect.style.height = h + 'px';
+		// 		rect.style.left = (img.offsetLeft + x) + 'px';
+		// 		rect.style.top = (img.offsetTop + y) + 'px';
+		// 	};
+		// };
+
+	</script>
+
+</body>
+</html>
