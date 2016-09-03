@@ -29,6 +29,7 @@ var showError = showerror.showError;
 var tokenGenerator = utils.createTokenGenerator();
 
 var initSocket = exports.initSocket = function(options, onopen, onlistening, onmessage, onerror, onclose) {
+  console.log('onmessage:' + onmessage);
   var listening;
   // function withDefault(val, defaultVal) {
   //   return typeof val === 'undefined' ? defaultVal : val;

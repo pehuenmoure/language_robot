@@ -43,7 +43,7 @@ void loop() {
         val = val - 360;
       }
       if (input[0] == 'p'){
-        pan = pan + val;
+        pan = val;
       }
 //      else{
 //        tilt = tilt + val;
@@ -79,8 +79,8 @@ void loop() {
     panservo.write(pan);
 //    tiltservo.write(tilt);
 //    delay(5);
-//    Serial.println("pan: " + (String)pan + " tilt: " + (String)tilt);
-    Serial.println('d');
+    Serial.println("pan: " + (String)pan);
+//    Serial.println('d');
 //    Serial.flush();
   }
 }

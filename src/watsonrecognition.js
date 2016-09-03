@@ -32,8 +32,8 @@ speechhandler.startGoogle();
 speechhandler.onWakeUp = function(){
 	console.log('Opening sockets');
 	window.socket.emit('play', 0);
-	toSocket = window.initWatsonSocket(toLanguageModule.watsonName);
-	fromSocket = window.initWatsonSocket(fromLanguageModule.watsonName);
+	toSocket = window.initWatsonSocket(toLanguageModule.watsonName, onToMessage);
+	fromSocket = window.initWatsonSocket(fromLanguageModule.watsonName, onFromMessage);
 };
 
 speechhandler.onSleep = function(){
@@ -89,7 +89,7 @@ function onFromMessage(msg) {
 			if (foreignPhrase.includes(fromLanguageModule.keyPhrase)){
 				translateQuery();	
 			} else {
-				window.socket.emit('usersays', msg.results[0].alternatives[0].transcript);
+				// window.socket.emit('usersays', msg.results[0].alternatives[0].transcript);
 			}
 		}
     }
@@ -210,7 +210,7 @@ $(document).ready(function(){
 		var lang = $(this).val();
 		fromLanguageModule = modules[lang];
 		fromSocket.close();
-		fromSocket = window.initWatsonSocket(fromLanguageModule.watsonName);
+		fromSocket = window.initWatsonSocket(fromLanguageModule.watsonName, onFromMessage);
 		console.log('changed fromlang: ' + lang); 
 	});
 
@@ -218,7 +218,7 @@ $(document).ready(function(){
 		var lang = $(this).val();
 		toLanguageModule = modules[lang];
 		toSocket.close();
-		toSocket = window.initWatsonSocket(toLanguageModule.watsonName);
+		toSocket = window.initWatsonSocket(toLanguageModule.watsonName, onToMessage);
 		console.log('changed tolang: ' + lang); 
 	});
 });
