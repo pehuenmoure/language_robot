@@ -12,7 +12,10 @@
     "express": "^4.13.3",
     "media": "0.0.1",
     "node-pre-gyp": "0.6.x",
+    "request": "^2.74.0",
     "serialport": "^2.0.5",
-    "socket.io": "^1.3.7"
+    "socket.io": "^1.3.7",
+    "vcap_services": "^0.2.0",
+    "ws": "^1.1.1"
   }
 }
